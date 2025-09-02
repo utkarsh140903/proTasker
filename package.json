@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "A full-stack task management application",
   "scripts": {
+    "start": "cd backend && npm start",
     "dev": "concurrently \"npm run backend:dev\" \"npm run frontend:dev\"",
-    "build": "cd frontend && npm run build",
+    "build": "npm install && cd backend && npm install",
     "backend:dev": "cd backend && npm run dev",
     "frontend:dev": "cd frontend && npm start",
     "backend:start": "cd backend && npm start",
@@ -26,6 +27,9 @@
   ],
   "author": "",
   "license": "MIT",
+  "engines": {
+    "node": ">=22.16.0 <23.0.0"
+  },
   "dependencies": {
     "axios": "^1.11.0"
   }
