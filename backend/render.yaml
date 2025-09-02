@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: task-manager-api
+    name: protasker-api
     env: node
     buildCommand: npm install
     startCommand: npm start
