@@ -1,0 +1,108 @@
+# Task Manager App - Main .gitignore
+# Created after watching some tutorials on git best practices
+
+# === Dependencies ===
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# === Environment Variables ===
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# === Build outputs ===
+build/
+dist/
+*.tgz
+*.tar.gz
+
+# === Development artifacts ===
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.temp
+
+# === IDE files ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# === Coverage reports ===
+coverage/
+.nyc_output/
+lcov.info
+
+# === Temporary files I create while coding ===
+temp/
+tmp/
+scratch/
+notes.txt
+todo_list.txt
+
+# === OS generated files ===
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# === Frontend build artifacts ===
+# React build files
+build/
+static/js/*.map
+static/css/*.map
+
+# PWA files
+manifest.json.backup
+sw.js.backup
+
+# === Backup files I make ===
+*.backup
+*.bak
+*.old
+*_backup.*
+*_old.*
+
+# === Database files (just in case) ===
+*.db
+*.sqlite
+*.sqlite3
+
+# === Sensitive stuff - NEVER commit these! ===
+config/secrets.*
+credentials.*
+private_keys/
+certs/
+
+# === Testing ===
+test-results/
+e2e-results/
+
+# === Documentation builds ===
+docs/build/
+
+# === Other stuff professors said to ignore ===
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.svelte-kit/
+
+# === My personal notes and experiments ===
+experiments/
+learning_notes/
+code_snippets/
+stackoverflow_solutions/
+
+# End of .gitignore - this took way too long to make comprehensive!
