@@ -27,6 +27,7 @@ import { useAuth } from '../context/AuthContext';
 import { tasksAPI } from '../services/api';
 import TaskItem from '../components/TaskItem';
 import TaskForm from '../components/TaskForm';
+import LogoutConfirmDialog from '../components/LogoutConfirmDialog';
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
@@ -38,6 +39,8 @@ const Dashboard = () => {
   const [editingTask, setEditingTask] = useState(null);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
+  const [logoutDialogOpen, setLogoutDialogOpen] = useState(false);
+  const [logoutLoading, setLogoutLoading] = useState(false);
   // TODO: maybe add more filter options later? like date range or something
   const [filters, setFilters] = useState({
     status: '',
@@ -143,6 +146,24 @@ const Dashboard = () => {
     }
   };
 
+  const handleLogoutClick = () => {
+    setLogoutDialogOpen(true);
+  };
+
+  const handleLogoutConfirm = async () => {
+    setLogoutLoading(true);
+    // Add small delay for better UX
+    setTimeout(() => {
+      logout();
+      setLogoutDialogOpen(false);
+      setLogoutLoading(false);
+    }, 500);
+  };
+
+  const handleLogoutCancel = () => {
+    setLogoutDialogOpen(false);
+  };
+
   const handleFilterChange = (field, value) => {
     setFilters(prev => ({
       ...prev,
@@ -169,7 +190,7 @@ const Dashboard = () => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Task Manager - Welcome, {user?.name}!
           </Typography>
-          <Button color="inherit" startIcon={<ExitToApp />} onClick={logout}>
+          <Button color="inherit" startIcon={<ExitToApp />} onClick={handleLogoutClick}>
             Logout
           </Button>
         </Toolbar>
@@ -371,6 +392,14 @@ const Dashboard = () => {
             </Button>
           </DialogActions>
         </Dialog>
+
+        {/* Logout Confirmation Dialog */}
+        <LogoutConfirmDialog
+          open={logoutDialogOpen}
+          onClose={handleLogoutCancel}
+          onConfirm={handleLogoutConfirm}
+          loading={logoutLoading}
+        />
       </Container>
     </>
   );

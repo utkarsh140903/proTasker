@@ -9,7 +9,7 @@ import {
   Alert,
   Link
 } from '@mui/material';
-import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import { useNavigate, Link as RouterLink, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
@@ -22,6 +22,11 @@ const Login = () => {
   
   const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  
+
+  const successMessage = location.state?.message;
+  const messageType = location.state?.type;
 
   
   const handleChange = (e) => {
@@ -72,6 +77,12 @@ const Login = () => {
           <Typography component="h2" variant="h5" align="center" gutterBottom>
             Sign In
           </Typography>
+          
+          {successMessage && messageType === 'success' && (
+            <Alert severity="success" sx={{ mb: 2 }}>
+              {successMessage}
+            </Alert>
+          )}
           
           {errorMsg && (
             <Alert severity="error" sx={{ mb: 2 }}>

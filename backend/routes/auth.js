@@ -35,12 +35,9 @@ router.post('/signup', [
     const user = new User({ name, email, password });
     await user.save();
 
-   
-    const token = generateToken(user._id);
-
+    
     res.status(201).json({
-      message: 'User created successfully',
-      token,
+      message: 'Account created successfully! Please sign in to continue.',
       user: {
         id: user._id,
         name: user.name,

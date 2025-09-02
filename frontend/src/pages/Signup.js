@@ -67,7 +67,13 @@ const Signup = () => {
     const result = await signup(signupData);
     
     if (result.success) {
-      navigate('/dashboard');
+      // Redirect to login page with success message
+      navigate('/login', { 
+        state: { 
+          message: result.data.message || 'Account created successfully! Please sign in to continue.',
+          type: 'success'
+        }
+      });
     } else {
       setError(result.error);
     }
